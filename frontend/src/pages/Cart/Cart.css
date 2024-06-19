@@ -2,6 +2,10 @@
   margin-top: 100px;
 }
 
+.cart-items {
+  height: auto;
+}
+
 .cart-items-title {
   display: grid;
   grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
@@ -30,7 +34,6 @@
 }
 
 .cart-bottom {
-  margin-top: 80px;
   display: flex;
   justify-content: space-between;
   gap: max(12vw, 20px);
