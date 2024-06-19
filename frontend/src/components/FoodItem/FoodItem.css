@@ -28,8 +28,8 @@
     font-weight: 500;
 }
 
-.food-item-name-rating img {
-    width: 70px;
+.food-item-name-rating svg {
+    color: tomato;
 }
 
 .food-item-desc {
