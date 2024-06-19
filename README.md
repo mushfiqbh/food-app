@@ -28,7 +28,7 @@ This project is a food delivery application built using Vite and Node.js. It all
 2. Install dependencies:
 
    ```bash
-   cd vite-node-food-delivery
+   cd food-del
    npm install
    ```
 
