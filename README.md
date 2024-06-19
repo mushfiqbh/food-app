@@ -13,9 +13,9 @@ This project is a food delivery application built using Vite and Node.js. It all
 
 ### Technologies Used
 
-* Frontend: Vite, Vue.js
+* Frontend: Vite, React.js
 * Backend: Node.js, Express.js
-* Database: (Choose your preferred database - e.g., MongoDB, PostgreSQL)
+* Database: MongoDB
 
 ### Setup Instructions
 
