@@ -21,6 +21,10 @@ const foodSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  rating: {
+    type: Number,
+    default: 4.5,
+  },
 });
 
 const foodModel = mongoose.models.food || mongoose.model("food", foodSchema);

@@ -4,13 +4,13 @@ import "./FoodDisplay.css";
 import React, { useContext } from "react";
 
 const FoodDisplay = ({ category }) => {
-  const { food_list } = useContext(StoreContext);
+  const { foodList } = useContext(StoreContext);
 
   return (
     <div className="food-display" id="food-display">
       <h2>Top dishes near you</h2>
       <div className="food-display-list">
-        {food_list.map((item, index) => {
+        {foodList.map((item, index) => {
           if ((category === "All" || category === item.category)) {
             return (
               <FoodItem
@@ -18,7 +18,7 @@ const FoodDisplay = ({ category }) => {
                 id={item._id}
                 name={item.name}
                 price={item.price}
-                desc={item.description}
+                desc={item.desc}
                 image={item.image}
                 rating={item.rating}
               />

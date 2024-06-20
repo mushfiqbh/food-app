@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
-import FoodItem from "./FoodItem";
-import "../FoodDisplay/FoodDisplay.css";
+import FoodItem from "../../components/FoodItem/FoodItem";
+import "./Search.css"
 
 const SearchBar = () => {
-  const { food_list } = useContext(StoreContext);
+  const { foodList } = useContext(StoreContext);
   const [filteredItems, setFilteredItems] = useState([]);
   const [searchMessage, setSearchMessage] = useState("Your Search Results");
 
@@ -30,7 +30,7 @@ const SearchBar = () => {
     event.preventDefault();
     const query = document.forms["search-form"].elements.query.value;
     if (query) {
-      const filtered = food_list.filter((item) =>
+      const filtered = foodList.filter((item) =>
         item.name.toLowerCase().includes(query.toLowerCase())
       );
 

@@ -2,10 +2,9 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 import { StoreContext } from "../../context/StoreContext";
-import { food_list } from "../../assets/assets";
 
 const Cart = () => {
-  const { cartItems, removeFromCart, getTotalCartAmount } =
+  const { foodList, cartItems, removeFromCart, getTotalCartAmount, url } =
     useContext(StoreContext);
   const navigate = useNavigate();
 
@@ -23,12 +22,12 @@ const Cart = () => {
         <br />
         <hr />
 
-        {food_list.map((item) => {
+        {foodList.map((item) => {
           if (cartItems[item._id]) {
             return (
               <div key={item._id}>
                 <div className="cart-items-title cart-items-item">
-                  <img src={item.image} alt="" />
+                  <img src={url + "/images/" + item.image} alt="" />
                   <p>{item.name}</p>
                   <p>${item.price}</p>
                   <p>{cartItems[item._id]}</p>
