@@ -4,8 +4,14 @@ import "./Cart.css";
 import { StoreContext } from "../../context/StoreContext";
 
 const Cart = () => {
-  const { foodList, cartItems, removeFromCart, getTotalCartAmount, url } =
-    useContext(StoreContext);
+  const {
+    foodList,
+    cartItems,
+    removeFromCart,
+    url,
+    cartAmount,
+  } = useContext(StoreContext);
+
   const navigate = useNavigate();
 
   return (
@@ -22,7 +28,7 @@ const Cart = () => {
         <br />
         <hr />
 
-        {foodList.map((item) => {
+        {foodList?.map((item) => {
           if (cartItems[item._id]) {
             return (
               <div key={item._id}>
@@ -31,7 +37,7 @@ const Cart = () => {
                   <p>{item.name}</p>
                   <p>${item.price}</p>
                   <p>{cartItems[item._id]}</p>
-                  <p>${item.price * cartItems[item._id]}</p>
+                  <p>${item?.price * cartItems[item._id]}</p>
                   <p onClick={() => removeFromCart(item._id)} className="cross">
                     X
                   </p>
@@ -46,20 +52,21 @@ const Cart = () => {
       <div className="cart-bottom">
         <div className="cart-total">
           <h2>Cart Total</h2>
+
           <div>
             <div className="cart-total-details">
               <p>Subtotal</p>
-              <p>${getTotalCartAmount()}</p>
+              <p>${cartAmount}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>${getTotalCartAmount() == 0 ? 0 : 2}</p>
+              <p>${cartAmount ? 2 : 0}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Total</p>
-              <p>${getTotalCartAmount() == 0 ? 0 : getTotalCartAmount() + 2}</p>
+              <p>${cartAmount ? cartAmount + 2 : 0}</p>
             </div>
           </div>
           <button onClick={() => navigate("/order")}>

@@ -8,8 +8,9 @@ const StoreContextProvider = (props) => {
   const [token, setToken] = useState("");
   const url = "http://127.0.0.1:4000";
   const [foodList, setFoodList] = useState([]);
+  const [cartAmount, setCartAmount] = useState(0);
 
-  const addToCart = (itemId) => {
+  const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
       setCartItems((prev) => ({
         ...prev,
@@ -21,24 +22,27 @@ const StoreContextProvider = (props) => {
         [itemId]: prev[itemId] + 1,
       }));
     }
+    if (token) {
+      await axios.post(
+        url + "/api/cart/add",
+        { itemId },
+        { headers: { token } }
+      );
+    }
   };
 
-  const removeFromCart = (itemId) => {
+  const removeFromCart = async (itemId) => {
     setCartItems((prev) => ({
       ...prev,
       [itemId]: prev[itemId] - 1,
     }));
-  };
-
-  const getTotalCartAmount = () => {
-    let totalAmount = 0;
-    for (const item in cartItems) {
-      if (cartItems[item] > 0) {
-        let itemInfo = foodList.find((product) => product._id === item);
-        totalAmount += itemInfo.price * cartItems[item];
-      }
+    if (token) {
+      await axios.post(
+        url + "/api/cart/remove",
+        { itemId },
+        { headers: { token } }
+      );
     }
-    return totalAmount;
   };
 
   const fetchFoodList = async () => {
@@ -46,15 +50,39 @@ const StoreContextProvider = (props) => {
     setFoodList(response.data.data);
   };
 
+  const loadCartData = async (token) => {
+    const response = await axios.get(url + "/api/cart/get", {
+      headers: { token },
+    });
+    setCartItems(response.data.cartData);
+  };
+
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setToken(localStorage.getItem("token"));
-    }
     const loadData = async () => {
+      if (localStorage.getItem("token")) {
+        setToken(localStorage.getItem("token"));
+        await loadCartData(localStorage.getItem("token"));
+      }
       await fetchFoodList();
     };
+
     loadData();
   }, []);
+
+  useEffect(() => {
+    const getTotalCartAmount = () => {
+      let totalAmount = 0;
+      for (const item in cartItems) {
+        if (cartItems[item] > 0) {
+          let itemInfo = foodList.find((product) => product._id === item);
+          totalAmount += itemInfo?.price * cartItems[item];
+        }
+      }
+      return totalAmount;
+    };
+
+    setCartAmount(getTotalCartAmount());
+  }, [cartItems, foodList]);
 
   const contextValue = {
     url,
@@ -66,7 +94,8 @@ const StoreContextProvider = (props) => {
     setCartItems,
     addToCart,
     removeFromCart,
-    getTotalCartAmount,
+    cartAmount,
+    setCartAmount,
   };
 
   return (
