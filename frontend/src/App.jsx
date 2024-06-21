@@ -10,6 +10,7 @@ import Search from "./pages/Search/Search";
 import NotFound from "./pages/NotFound/NotFound";
 import Verify from "./pages/Verify/Verify";
 import MyOrders from "./pages/MyOrders/MyOrders";
+import Profile from "./pages/Profile/Profile";
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -22,7 +23,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/order" element={<PLaceOrder  />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/placeorder" element={<PLaceOrder  />} />
           <Route path="/verify" element={<Verify />} />
           <Route path="/myorders" element={<MyOrders />} />
           <Route path="/search" element={<Search />} />

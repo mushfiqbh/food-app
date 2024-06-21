@@ -69,7 +69,7 @@ const Cart = () => {
               <p>${cartAmount ? cartAmount + 2 : 0}</p>
             </div>
           </div>
-          <button onClick={() => navigate("/order")}>
+          <button onClick={() => navigate("/placeorder")}>
             PROCEED TO CHECKOUT
           </button>
         </div>
