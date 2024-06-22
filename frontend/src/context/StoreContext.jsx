@@ -6,9 +6,9 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [token, setToken] = useState("");
-  const url = "http://127.0.0.1:4000";
   const [foodList, setFoodList] = useState([]);
   const [cartAmount, setCartAmount] = useState(0);
+  const url = "https://food-app-backend-ugzt.onrender.com";
 
   const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
