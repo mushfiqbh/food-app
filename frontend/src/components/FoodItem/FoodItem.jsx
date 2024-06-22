@@ -13,7 +13,7 @@ const FoodItem = ({ id, name, price, desc, image, rating }) => {
       <div className="food-item-image-container">
         <img
           className="food-item-image"
-          src="https://drive.usercontent.google.com/download?id=11qaW3WPNMhec2polanvp6yq0I0Xsk1xr"
+          src="https://drive.google.com/file/d/11qaW3WPNMhec2polanvp6yq0I0Xsk1xr"
           alt=""
         />
         {!cartItems[id] ? (
