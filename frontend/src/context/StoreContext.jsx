@@ -8,7 +8,7 @@ const StoreContextProvider = (props) => {
   const [token, setToken] = useState("");
   const [foodList, setFoodList] = useState([]);
   const [cartAmount, setCartAmount] = useState(0);
-  const url = "https://food-app-backend-ugzt.onrender.com";
+  const url = "http://127.0.0.1:4000";
 
   const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
@@ -31,10 +31,10 @@ const StoreContextProvider = (props) => {
     }
   };
 
-  const removeFromCart = async (itemId) => {
+  const removeFromCart = async (itemId, del = false) => {
     setCartItems((prev) => ({
       ...prev,
-      [itemId]: prev[itemId] - 1,
+      [itemId]: del ? 0 : prev[itemId] - 1,
     }));
     if (token) {
       await axios.post(

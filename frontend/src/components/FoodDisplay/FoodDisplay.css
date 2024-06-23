@@ -2,7 +2,13 @@
     margin-top: 30px;
 }
 
-.food-display h2 {
+.food-display-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.food-display-topbar h2 {
     font-size: max(2vw, 24px);
     font-weight: 600;
 }

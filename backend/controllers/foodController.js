@@ -46,26 +46,4 @@ const removeFood = async (req, res) => {
   }
 };
 
-const renameImage = async (req, res) => {
-  try {
-    const foods = await foodModel.find({});
-
-    const renamer = async (item) => {
-      const name = item.image;
-      const newName = name.slice(name.indexOf("food"));
-
-      await foodModel.findByIdAndUpdate(item._id, { image: newName });
-    };
-
-    // Create an array of promises and wait for all of them to complete
-    await Promise.all(foods.map(renamer));
-
-    res.json({ success: true, message: "Update Successful" });
-  } catch (error) {
-    console.error("Error during renaming:", error);
-    res.json({ success: false, message: "Error Occurred" });
-  }
-};
-
-
-export { addFood, listFood, removeFood, renameImage };
+export { addFood, listFood, removeFood };

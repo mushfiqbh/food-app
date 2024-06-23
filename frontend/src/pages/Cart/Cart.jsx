@@ -4,13 +4,8 @@ import "./Cart.css";
 import { StoreContext } from "../../context/StoreContext";
 
 const Cart = () => {
-  const {
-    foodList,
-    cartItems,
-    removeFromCart,
-    url,
-    cartAmount,
-  } = useContext(StoreContext);
+  const { foodList, cartItems, addToCart, removeFromCart, url, cartAmount } =
+    useContext(StoreContext);
 
   const navigate = useNavigate();
 
@@ -36,10 +31,32 @@ const Cart = () => {
                   <img src={url + "/images/" + item.image} alt="" />
                   <p>{item.name}</p>
                   <p>${item.price}</p>
-                  <p>{cartItems[item._id]}</p>
+                  <p className="cart-items-quantity">
+                    <button
+                      disabled={cartItems[item._id] === 1}
+                      onClick={() => removeFromCart(item._id)}
+                      className="cross"
+                    >
+                      -
+                    </button>
+                    <span>{cartItems[item._id]}</span>
+                    <button
+                      onClick={() => addToCart(item._id)}
+                      className="cross"
+                    >
+                      +
+                    </button>
+                  </p>
                   <p>${item?.price * cartItems[item._id]}</p>
-                  <p onClick={() => removeFromCart(item._id)} className="cross">
-                    X
+                  <p
+                    onClick={() => {
+                      confirm("Are You Sure to REMOVE this Item")
+                        ? removeFromCart(item._id, true)
+                        : null;
+                    }}
+                    className="cross"
+                  >
+                    remove
                   </p>
                 </div>
                 <hr />
