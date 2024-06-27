@@ -9,7 +9,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
-  const url = "http://127.0.0.1:4000";
+  const url = "https://food-app-backend-ugzt.onrender.com";
+  // const url = "http://127.0.0.1:4000";
 
   return (
     <div>

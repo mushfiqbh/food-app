@@ -7,6 +7,10 @@
     animation: fadeIn 1s;
 }
 
+.food-item:hover {
+    transform: scale(1.05);
+}
+
 .food-item-image {
     width: 100%;
     border-radius: 15px 15px 0 0;

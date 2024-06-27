@@ -8,7 +8,8 @@ const StoreContextProvider = (props) => {
   const [token, setToken] = useState("");
   const [foodList, setFoodList] = useState([]);
   const [cartAmount, setCartAmount] = useState(0);
-  const url = "http://127.0.0.1:4000";
+  const url = "https://food-app-backend-ugzt.onrender.com"
+  // const url = "http://127.0.0.1:4000";
 
   const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {

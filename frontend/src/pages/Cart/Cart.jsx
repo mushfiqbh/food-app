@@ -6,7 +6,6 @@ import { StoreContext } from "../../context/StoreContext";
 const Cart = () => {
   const { foodList, cartItems, addToCart, removeFromCart, url, cartAmount } =
     useContext(StoreContext);
-
   const navigate = useNavigate();
 
   return (

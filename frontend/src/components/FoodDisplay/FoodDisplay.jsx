@@ -14,19 +14,18 @@ const FoodDisplay = ({ category }) => {
     setQuery(value);
 
     if (!value) {
-      setSearchMessage("Top dishes near you")
+      setSearchMessage("Top dishes near you");
       setFiltered([]);
-      return;
     } else {
       const filtered = foodList.filter((item) =>
         item.name.toLowerCase().includes(value.toLowerCase())
       );
 
       if (filtered.length === 0) {
-        setSearchMessage(`No Match Found for ${value}`);
+        setSearchMessage(`No Match Found`);
         setFiltered([]);
       } else {
-        setSearchMessage(`Search Results for ${value} ${filtered.length}`);
+        setSearchMessage(`${filtered.length} Search Results Found`);
         setFiltered(filtered);
       }
     }
@@ -35,18 +34,23 @@ const FoodDisplay = ({ category }) => {
   return (
     <div className="food-display" id="food-display">
       <div className="food-display-topbar">
-        <h2>{searchMessage}</h2>
-        <div className="food-display-filter">
-          <form id="search-form">
-            <input
-              type="search"
-              name="query"
-              value={query}
-              onChange={handleSearch}
-              placeholder="Type Food Name"
-            />
-          </form>
-        </div>
+        <h2
+          style={{
+            color: searchMessage === "Top dishes near you" ? "black" : "red",
+          }}
+        >
+          {searchMessage}
+        </h2>
+        <div className="food-display-filter"></div>
+        <form id="search-form" className="food-display-search">
+          <input
+            type="search"
+            name="query"
+            value={query}
+            onChange={handleSearch}
+            placeholder="Search Foods Here"
+          />
+        </form>
       </div>
       <div className="food-display-list">
         {filtered.length
