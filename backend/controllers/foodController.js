@@ -32,7 +32,6 @@ const listFood = async (req, res) => {
   }
 };
 
-// all food list
 const removeFood = async (req, res) => {
   try {
     const food = await foodModel.findById(req.body.id);

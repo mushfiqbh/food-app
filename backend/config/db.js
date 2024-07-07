@@ -9,5 +9,3 @@ export const connectDB = async () => {
       console.log("DB Connected");
     });
 };
-
-//   "mongodb://localhost:27017/food-app"
